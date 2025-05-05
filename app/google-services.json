@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17726145054",
+    "project_id": "kilimo2",
+    "storage_bucket": "kilimo2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17726145054:android:b159380984a15bf2efa40f",
+        "android_client_info": {
+          "package_name": "com.agro.kilimo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS7kkHySJpCPNOiaN5WkdcJmPiqh7IvMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
