@@ -11,7 +11,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -24,7 +23,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -37,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.navigation.ROUT_ABOUT
 import com.agro.kilimo.navigation.ROUT_DASHBOARD
 import com.agro.kilimo.navigation.ROUT_HOME
+import com.agro.kilimo.navigation.ROUT_ITEM
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +45,7 @@ fun ContactScreen(navController: NavController){
 
     //Scaffold
 
-    var selectedIndex by remember { mutableStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(0) }
 
     Scaffold(
         //TopBar
@@ -83,7 +83,7 @@ fun ContactScreen(navController: NavController){
                     label = { Text("Favorites") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ITEM)
                     }
                 )
                 NavigationBarItem(
@@ -120,7 +120,7 @@ fun ContactScreen(navController: NavController){
                 //Main Contents of the page
                 Text(text = "Welcome to Contact Screen", fontSize = 20.sp)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("This is where the main content goes.")
+                Text("Feel free to contact us Today.")
 
 
 

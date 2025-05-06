@@ -12,6 +12,7 @@ import com.agro.kilimo.ui.theme.screens.contact.ContactScreen
 import com.agro.kilimo.ui.theme.screens.dashboard.DashboardScreen
 
 import com.agro.kilimo.ui.theme.screens.home.HomeScreen
+import com.agro.kilimo.ui.theme.screens.intent.Intent_Screen
 import com.agro.kilimo.ui.theme.screens.item.ItemScreen
 import com.agro.kilimo.ui.theme.screens.login.LoginScreen
 import com.agro.kilimo.ui.theme.screens.register.RegisterScreen
@@ -43,15 +44,18 @@ fun AppNavHost(
             LoginScreen(navController)
         }
 
-
+        composable(ROUT_INTENT) {
+            Intent_Screen(navController)
+        }
 
         composable(ROUT_DASHBOARD) {
-            DashboardScreen(navController)
-        }
+                DashboardScreen(navController)
+            }
         composable(ROUT_CONTACT) {
-            ContactScreen(navController)
-        }
+                ContactScreen(navController)
+            }
         composable(ROUT_REGISTER) {
-            RegisterScreen(navController)
+                RegisterScreen(navController)
+            }
         }
-    }}
+    }

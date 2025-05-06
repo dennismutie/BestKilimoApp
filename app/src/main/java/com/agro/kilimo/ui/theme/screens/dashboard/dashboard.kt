@@ -1,7 +1,6 @@
 package com.agro.kilimo.ui.theme.screens.dashboard
 
-
-
+//import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,14 +17,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Menu
-
-
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,16 +31,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.R
@@ -85,9 +77,8 @@ fun DashboardScreen(navController: NavController){
                     )
 
                 Text(
-                    text = "A mall or shopping center is a large building that is full of many smaller shops and stores. It is different from earlier markets or bazaars because most of ...",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = "Kilimo App helps farmers improve their farming by offering crop advice, market prices, and useful farming tips in one easy-to-use platform."
+//                    fontWeight = FontWeight.Bold,
                 )
 
 

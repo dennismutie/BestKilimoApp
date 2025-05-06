@@ -1,48 +1,71 @@
 package com.agro.kilimo.ui.theme.screens.splash
 
-
-
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.height
+//import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+//import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.R
-import com.agro.kilimo.navigation.ROUT_LOGIN
+import com.agro.kilimo.navigation.ROUT_HOME
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun splash_sreen(navController: NavHostController) {
-    LaunchedEffect(Unit) {
+fun Splash_Screen(navController:NavHostController) {
+    val coroutine= rememberCoroutineScope()
+    coroutine.launch {
         delay(3000)
-        navController.navigate(ROUT_LOGIN)
+        navController.navigate(ROUT_HOME)
     }
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-            .background(color = Color.Magenta)
-    ) {
-        Image(
+
+
+
+    Column(modifier=Modifier
+        .fillMaxSize()
+        .background(Color.Yellow),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Image(painter = painterResource(id = R.drawable.apple),
             contentDescription = "splash",
-            modifier = Modifier.size(150.dp),
-            painter = painterResource(id = R.drawable.tomato)
+            modifier = Modifier
+                .width(300.dp)
+                .height(400.dp))
+        Text("Code",
+            fontSize =20.sp,
+            fontWeight = FontWeight.ExtraBold,
+            color = Color.Green
         )
+
+
     }
+
+
 }
 
 @Preview
 @Composable
-private fun splash_prev() {
-    splash_sreen(rememberNavController())
+private fun SpashPrev() {
+
+    Splash_Screen(rememberNavController())
+
 }
