@@ -1,11 +1,11 @@
 package com.agro.kilimo.ui.theme.screens.about
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -31,16 +32,16 @@ fun AboutScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = "....Know more about Kilimo App",
             color = Color.Red.copy(alpha = 0.8f),
+
             fontSize = 18.sp,
             textAlign = TextAlign.Center
         )
         Image(
             contentDescription = "about",
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.width(600.dp),
             painter = painterResource(id = R.drawable.watermelon)
         )
         Text(
@@ -48,12 +49,11 @@ fun AboutScreen(navController: NavHostController) {
             color = Color.Blue.copy(alpha = 0.8f),
             fontSize = 18.sp,
         )
-
-
-        @Preview
-        @Composable
-        fun AboutPreview(rememberNavController: NavHostController) {
-            AboutPreview(rememberNavController())
-        }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AboutPreview() {
+    AboutScreen(navController = rememberNavController())
 }

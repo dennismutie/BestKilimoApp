@@ -43,7 +43,7 @@ fun Intent_Screen(navController:NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)) {
+            .background(Color.Red)) {
 
         Image(painterResource(id = R.drawable.apple),
             contentDescription = "intent")

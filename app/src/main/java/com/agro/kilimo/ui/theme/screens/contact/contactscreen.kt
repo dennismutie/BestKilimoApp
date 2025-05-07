@@ -101,7 +101,7 @@ fun ContactScreen(navController: NavController){
         //FloatingActionButton
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /* Add action */ },
+                onClick = { navController.navigate(ROUT_HOME) },
                 containerColor = Color.Red,
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Add")

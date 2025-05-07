@@ -1,8 +1,6 @@
 package com.agro.kilimo.ui.theme.screens.item
-
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,8 +13,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-//import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowForward
+//import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Menu
+//import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
@@ -48,15 +48,14 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.R
-import com.agro.kilimo.navigation.ROUT_CONTACT
+import com.agro.kilimo.navigation.ROUT_INTENT
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemScreen(navController: NavController) {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
+fun ItemScreen(navController: NavController){
+    Column (modifier = Modifier.fillMaxSize()
+    ){
         val mContext = LocalContext.current
 
         //TopAppBar
@@ -64,9 +63,9 @@ fun ItemScreen(navController: NavController) {
             title = { Text(text = "Products") },
             colors = TopAppBarDefaults.topAppBarColors(
                 navigationIconContentColor = Color.White,
-                containerColor = Color.White,
+                containerColor = Color.Yellow,
                 titleContentColor = Color.White,
-                actionIconContentColor = Color.White
+                actionIconContentColor =Color.White
 
             ),
             navigationIcon = {
@@ -77,32 +76,24 @@ fun ItemScreen(navController: NavController) {
             },
             actions = {
                 IconButton(onClick = {}) {
-                    Icon(
-                        imageVector = Icons.Default.ShoppingCart,
-                        contentDescription = "shoppingCart"
-                    )
+                    Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "shoppingCart")
                 }
                 IconButton(onClick = {
-                    navController.navigate(ROUT_CONTACT)
+                    navController.navigate(ROUT_INTENT)
                 }) {
-//                    Icon(
-//                        imageVector = Icons.Default.ArrowForward,
-//                        contentDescription = "Notifications"
-//                    )
+                    Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "Notifications")
                 }
 
             }
 
         )
 
-
         //End
 
-
         Image(
-            painter = painterResource(R.drawable.tomato),
+            painter = painterResource(R.drawable.item),
             contentDescription = "home",
-            modifier = Modifier.fillMaxWidth().height(200.dp),
+            modifier = Modifier.fillMaxWidth().height(150.dp),
             contentScale = ContentScale.FillWidth
         )
 
@@ -113,273 +104,190 @@ fun ItemScreen(navController: NavController) {
         var search by remember { mutableStateOf("") }
         OutlinedTextField(
             value = search,
-            onValueChange = { search = it },
+            onValueChange = { search = it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
             leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
-            placeholder = { Text(text = "Search...") }
+            placeholder = { Text(text = "Search...")}
 
         )
 
         //End of SearchBar
-        Column(
-            modifier = Modifier.fillMaxSize()
-                .background(Color.Red)
-                .verticalScroll(rememberScrollState())
-        ) {
-            Spacer(modifier = Modifier.height(10.dp))
+
+        Spacer(modifier = Modifier.height(10.dp))
 
 
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                //Row
-                Row(modifier = Modifier.padding(start = 20.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.bean),
-                        contentDescription = "home",
-                        modifier = Modifier.width(200.dp).height(150.dp),
-                        contentScale = ContentScale.FillWidth
+        Column (modifier = Modifier.verticalScroll(rememberScrollState())){
+            //Row
+            Row (modifier = Modifier.padding(start = 20.dp)){
+                Image(
+                    painter = painterResource(R.drawable.sprayer),
+                    contentDescription = "home",
+                    modifier = Modifier.width(200.dp).height(150.dp),
+                    contentScale = ContentScale.FillWidth
+                )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Column (){
+                    Text(
+                        text = "Sprayer",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.ExtraBold
+
                     )
 
-                    Spacer(modifier = Modifier.width(10.dp))
-
-                    Column {
-                        Text(
-                            text = "Bean Seeds",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.ExtraBold
-
-                        )
-
-                        Text(
-                            text = "Bean Seed",
-                            fontSize = 15.sp
-                        )
-                        Text(
-                            text = "ksh.650",
-                            fontSize = 20.sp,
-                            textDecoration = TextDecoration.LineThrough
-                        )
-                        Text(
-                            text = "ksh.590",
-                            fontSize = 20.sp,
-
-                            )
-
-                        Row {
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        Button(
-                            onClick = {
-                                val callIntent = Intent(Intent.ACTION_DIAL)
-                                callIntent.data = "tel:0717680972".toUri()
-                                mContext.startActivity(callIntent)
-                            },
-                            colors = ButtonDefaults.buttonColors(Color.Red),
-                            shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
-
-
-                        ) {
-                            Text(text = "Contact Us")
-                        }
-                    }
-
-
-                }
-                //End of Row
-
-
-                //Row
-                Row(modifier = Modifier.padding(start = 20.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.orange),
-                        contentDescription = "home",
-                        modifier = Modifier.width(200.dp).height(150.dp),
-                        contentScale = ContentScale.FillWidth
+                    Text(
+                        text = " Modern Sprayer",
+                        fontSize = 15.sp
                     )
-
-                    Spacer(modifier = Modifier.width(10.dp))
-
-                    Column {
-                        Text(
-                            text = "Maize seed",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.ExtraBold
-
-                        )
-
-                        Text(
-                            text = "Maize seed",
-                            fontSize = 15.sp
-                        )
-                        Text(
-                            text = "ksh.560",
-                            fontSize = 20.sp,
-                            textDecoration = TextDecoration.LineThrough
-                        )
-                        Text(
-                            text = "ksh.490",
-                            fontSize = 20.sp,
-
-                            )
-
-                        Row {
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        Button(
-                            onClick = {
-                                val callIntent = Intent(Intent.ACTION_DIAL)
-                                callIntent.data = "tel:0717680972".toUri()
-                                mContext.startActivity(callIntent)
-                            },
-                            colors = ButtonDefaults.buttonColors(Color.Red),
-                            shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
-
-
-                        ) {
-                            Text(text = "Contact Us")
-                        }
-                    }
-
-
-                }
-                //End of Row
-                //Row
-                Row(modifier = Modifier.padding(start = 20.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.sprayer),
-                        contentDescription = "sprayer",
-                        modifier = Modifier.width(200.dp).height(150.dp),
-                        contentScale = ContentScale.FillWidth
+                    Text(
+                        text = "ksh.3500",
+                        fontSize = 20.sp,
+                        textDecoration = TextDecoration.LineThrough
                     )
-
-                    Spacer(modifier = Modifier.width(10.dp))
-
-                    Column {
-                        Text(
-                            text = "Sprayer",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.ExtraBold
+                    Text(
+                        text = "ksh.2800",
+                        fontSize = 20.sp,
 
                         )
 
-                        Text(
-                            text = "Sprayer",
-                            fontSize = 15.sp
+                    Row () {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
                         )
-                        Text(
-                            text = "ksh.2500",
-                            fontSize = 20.sp,
-                            textDecoration = TextDecoration.LineThrough
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
                         )
-                        Text(
-                            text = "ksh.2000",
-                            fontSize = 20.sp,
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                            )
+                    Button(onClick = {
+                        val callIntent=Intent(Intent.ACTION_DIAL)
+                        callIntent.data="tel:0717680972".toUri()
+                        mContext.startActivity(callIntent)
+                    },
+                        colors = ButtonDefaults.buttonColors(Color.Yellow),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
 
-                        Row {
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "",
-                                tint = Color.Red
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(10.dp))
 
-                        Button(
-                            onClick = {
-                                val callIntent = Intent(Intent.ACTION_DIAL)
-                                callIntent.data = "tel:0717680972".toUri()
-                                mContext.startActivity(callIntent)
-                            },
-                            colors = ButtonDefaults.buttonColors(Color.Red),
-                            shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
-
-                        ) {
-                            Text(text = "Contact Us")
-                        }
+                    ) {
+                        Text(text = "Contact Us")
                     }
                 }
+
+
 
             }
+            //End of Row
 
 
             //Row
-            Row(modifier = Modifier.padding(start = 20.dp)) {
+            Row (modifier = Modifier.padding(start = 20.dp)){
+                Image(
+                    painter = painterResource(R.drawable.irrigate),
+                    contentDescription = "home",
+                    modifier = Modifier.width(200.dp).height(150.dp),
+                    contentScale = ContentScale.FillWidth
+                )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Column () {
+                    Text(
+                        text = "Irrigation kit",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.ExtraBold
+
+                    )
+
+                    Text(
+                        text = "Irrigation kit",
+                        fontSize = 15.sp
+                    )
+                    Text(
+                        text = "ksh.8000",
+                        fontSize = 20.sp,
+                        textDecoration = TextDecoration.LineThrough
+                    )
+                    Text(
+                        text = "ksh.6500",
+                        fontSize = 20.sp,
+
+                        )
+
+                    Row () {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Button(onClick = {
+                        val callIntent=Intent(Intent.ACTION_DIAL)
+                        callIntent.data="tel:0717680972".toUri()
+                        mContext.startActivity(callIntent)
+                    },
+                        colors = ButtonDefaults.buttonColors(Color.Yellow),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+
+
+
+
+                    ) {
+                        Text(text = "Contact Us")
+                    }
+                }
+
+
+
+            }
+            //End of Row
+
+            //Row
+            Row (modifier = Modifier.padding(start = 20.dp)){
                 Image(
                     painter = painterResource(R.drawable.fertiliser),
                     contentDescription = "home",
@@ -389,7 +297,7 @@ fun ItemScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.width(10.dp))
 
-                Column {
+                Column (){
                     Text(
                         text = "Fertiliser",
                         fontSize = 20.sp,
@@ -402,52 +310,46 @@ fun ItemScreen(navController: NavController) {
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "ksh.2500",
+                        text = "ksh.4500",
                         fontSize = 20.sp,
                         textDecoration = TextDecoration.LineThrough
                     )
                     Text(
-                        text = "ksh.2350",
+                        text = "ksh.3800",
                         fontSize = 20.sp,
 
                         )
 
-                    Row {
+                    Row () {
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = "",
-                            tint = Color.Red
+                            tint = Color.Yellow
                         )
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = "",
-                            tint = Color.Red
+                            tint = Color.Yellow
                         )
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = "",
-                            tint = Color.Red
+                            tint = Color.Yellow
                         )
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = "",
-                            tint = Color.Red
-                        )
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "",
-                            tint = Color.Red
+                            tint = Color.Yellow
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
 
-                    Button(
-                        onClick = {
-                            val callIntent = Intent(Intent.ACTION_DIAL)
-                            callIntent.data = "tel:0717680972".toUri()
-                            mContext.startActivity(callIntent)
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Red),
+                    Button(onClick = {
+                        val callIntent=Intent(Intent.ACTION_DIAL)
+                        callIntent.data="tel:0717680972".toUri()
+                        mContext.startActivity(callIntent)
+                    },
+                        colors = ButtonDefaults.buttonColors(Color.Yellow),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
 
@@ -461,10 +363,13 @@ fun ItemScreen(navController: NavController) {
 
     }
 
-
 }
-    @Preview(showBackground = true)
-    @Composable
-    fun ItemScreenPreview() {
-        ItemScreen(rememberNavController())
-    }
+
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun ItemScreenPreview(){
+    ItemScreen(rememberNavController())
+}

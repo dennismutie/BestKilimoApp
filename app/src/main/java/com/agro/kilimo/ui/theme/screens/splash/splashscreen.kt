@@ -51,10 +51,10 @@ fun Splash_Screen(navController:NavHostController) {
             modifier = Modifier
                 .width(300.dp)
                 .height(400.dp))
-        Text("Code",
+        Text(".....Welcome to Kilimo App",
             fontSize =20.sp,
             fontWeight = FontWeight.ExtraBold,
-            color = Color.Green
+            color = Color.Red
         )
 
 

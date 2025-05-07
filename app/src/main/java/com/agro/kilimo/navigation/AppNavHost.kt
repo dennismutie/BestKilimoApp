@@ -22,7 +22,7 @@ import com.agro.kilimo.ui.theme.screens.register.RegisterScreen
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_SPLASH
+    startDestination: String = ROUT_DASHBOARD
 ) {
 
     NavHost(
@@ -30,32 +30,36 @@ fun AppNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
+//        composable(ROUT_SPLASH) {
+//            SplashScreen(navController)
+//        }
         composable(ROUT_HOME) {
             HomeScreen(navController)
         }
+
         composable(ROUT_ABOUT) {
             AboutScreen(navController)
         }
-
         composable(ROUT_ITEM) {
             ItemScreen(navController)
         }
+
         composable(ROUT_LOGIN) {
             LoginScreen(navController)
         }
 
         composable(ROUT_INTENT) {
-            Intent_Screen(navController)
-        }
-
-        composable(ROUT_DASHBOARD) {
-                DashboardScreen(navController)
+                Intent_Screen(navController)
             }
         composable(ROUT_CONTACT) {
-                ContactScreen(navController)
+            ContactScreen(navController)
+        }
+        composable(ROUT_DASHBOARD) {
+            DashboardScreen(navController)
             }
         composable(ROUT_REGISTER) {
                 RegisterScreen(navController)
             }
+
         }
     }
