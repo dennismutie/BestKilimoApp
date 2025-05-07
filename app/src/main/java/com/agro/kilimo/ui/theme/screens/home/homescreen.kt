@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
+//import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -24,16 +24,23 @@ import com.agro.kilimo.navigation.ROUT_ITEM
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf()
-                )
-            )
-            .padding(16.dp)
-    ) {
+    Column(modifier=Modifier
+        .fillMaxSize()
+        .background(Color.Yellow),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+
+
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(
+//                Brush.verticalGradient(
+//                    colors = listOf()
+//                )
+//            )
+//            .padding(16.dp)
+//    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -44,7 +51,7 @@ fun HomeScreen(navController: NavHostController) {
             // Welcome Text
             Text(
                 text = "Welcome to Home Page",
-                color = Color.White,
+                color = Color.Red,
                 fontFamily = FontFamily.Cursive,
                 fontWeight = FontWeight.Bold,
                 fontSize = 36.sp,
@@ -55,7 +62,7 @@ fun HomeScreen(navController: NavHostController) {
             ActionCard(
                 title = "View Product",
                 description = "View products to your inventory.",
-                backgroundColor = Color.Green,
+                backgroundColor = Color.Red,
                 onClick = { navController.navigate(ROUT_ITEM) }
             )
 
@@ -75,7 +82,7 @@ fun HomeScreen(navController: NavHostController) {
             ActionCard(
                 title = "Contact",
                 description = "Upload product details to the cloud.",
-                backgroundColor = Color.Yellow,
+                backgroundColor = Color.Gray,
                 onClick = { navController.navigate(ROUT_CONTACT) }
             )
         }

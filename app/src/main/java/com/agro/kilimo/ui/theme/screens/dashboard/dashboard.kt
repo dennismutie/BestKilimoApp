@@ -180,7 +180,7 @@ fun DashboardScreen(navController: NavController){
                     verticalArrangement = Arrangement.Center
                 ){
                     Image(
-                        painter = painterResource(R.drawable.about),
+                        painter = painterResource(R.drawable.about1),
                         contentDescription = "home",
                         modifier = Modifier.size(100.dp)
                     )

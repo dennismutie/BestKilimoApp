@@ -24,7 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.R
-import com.agro.kilimo.navigation.ROUT_HOME
+//import com.agro.kilimo.navigation.ROUT_HOME
+import com.agro.kilimo.navigation.ROUT_LOGIN
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -34,7 +35,7 @@ fun Splash_Screen(navController:NavHostController) {
     val coroutine= rememberCoroutineScope()
     coroutine.launch {
         delay(3000)
-        navController.navigate(ROUT_HOME)
+        navController.navigate(ROUT_LOGIN)
     }
 
 

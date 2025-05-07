@@ -15,7 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+//import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -85,10 +85,10 @@ fun ItemScreen(navController: NavController) {
                 IconButton(onClick = {
                     navController.navigate(ROUT_CONTACT)
                 }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowForward,
-                        contentDescription = "Notifications"
-                    )
+//                    Icon(
+//                        imageVector = Icons.Default.ArrowForward,
+//                        contentDescription = "Notifications"
+//                    )
                 }
 
             }

@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
+
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
@@ -38,17 +38,23 @@ fun RegisterScreen(navController: NavHostController) {
     var confirmpass by remember { mutableStateOf(TextFieldValue("")) }
     val context = LocalContext.current
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf()
-                )
-            )
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
+    Column(modifier=Modifier
+        .fillMaxSize()
+        .background(Color.Yellow),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(
+//                Brush.verticalGradient(
+//                    colors = listOf()
+//                )
+//            )
+//            .padding(16.dp),
+//        contentAlignment = Alignment.Center
+//    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -59,7 +65,7 @@ fun RegisterScreen(navController: NavHostController) {
             // Title
             Text(
                 text = "Create an Account",
-                color = Color.DarkGray, // Adjusted for better visibility
+                color = Color.Red, // Adjusted for better visibility
                 fontFamily = FontFamily.Cursive,
                 fontWeight = FontWeight.Bold,
                 fontSize = 36.sp,
@@ -68,7 +74,7 @@ fun RegisterScreen(navController: NavHostController) {
             )
             Text(
                 text = "Sign up to get started",
-                color = Color.Black, // Adjusted for better contrast
+                color = Color.Red, // Adjusted for better contrast
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center
             )
@@ -77,7 +83,7 @@ fun RegisterScreen(navController: NavHostController) {
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text(text = "Email Address", color = Color.DarkGray) },
+                label = { Text(text = "Email Address", color = Color.Red) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -97,7 +103,7 @@ fun RegisterScreen(navController: NavHostController) {
             TextField(
                 value = pass,
                 onValueChange = { pass = it },
-                label = { Text(text = "Password", color = Color.Black) },
+                label = { Text(text = "Password", color = Color.Red) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -117,7 +123,7 @@ fun RegisterScreen(navController: NavHostController) {
             TextField(
                 value = confirmpass,
                 onValueChange = { confirmpass = it },
-                label = { Text(text = "Confirm Password", color =Color.Black) },
+                label = { Text(text = "Confirm Password", color =Color.Blue) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -147,7 +153,7 @@ fun RegisterScreen(navController: NavHostController) {
             ) {
                 Text(
                     text = "Register",
-                    color = Color.White,
+                    color = Color.Red,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
@@ -156,11 +162,11 @@ fun RegisterScreen(navController: NavHostController) {
             // Login Button
             TextButton(
                 onClick = { navController.navigate(ROUT_LOGIN) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.width(200.dp)
             ) {
                 Text(
                     text = "Already have an account? Log in",
-                    color = Color.LightGray,
+                    color = Color.Red,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 14.sp
                 )
