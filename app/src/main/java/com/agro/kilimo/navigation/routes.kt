@@ -9,5 +9,8 @@ const val ROUT_INTENT = "intent"
 const val ROUT_DASHBOARD = "dashboardscreen"
 const val ROUT_CONTACT = "contact"
 const val ROUT_REGISTER = "register"
-
+const val ROUT_ADDPRODUCTSCREEN = "addproductscreen"
+const val ROUT_UPDATEPRODUCTSCREEN = "updateproduct"
+const val ROUT_VIEWPRODUCTSCREEN = "viewproduct"
+const val ROUT_VIEWUPLOADSCREEN = "viewuploads"
 

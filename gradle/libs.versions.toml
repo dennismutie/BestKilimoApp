@@ -19,6 +19,8 @@ firebaseFirestore = "25.1.4"
 firebaseStorage = "21.0.1"
 firebaseInappmessagingDisplay = "21.0.2"
 firebaseConfig = "22.1.1"
+firebaseFunctions = "21.2.1"
+firebaseMessaging = "24.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +47,8 @@ firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 firebase-inappmessaging-display = { group = "com.google.firebase", name = "firebase-inappmessaging-display", version.ref = "firebaseInappmessagingDisplay" }
 firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
+firebase-functions = { group = "com.google.firebase", name = "firebase-functions", version.ref = "firebaseFunctions" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

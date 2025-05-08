@@ -15,6 +15,10 @@ import com.agro.kilimo.ui.theme.screens.home.HomeScreen
 import com.agro.kilimo.ui.theme.screens.intent.Intent_Screen
 import com.agro.kilimo.ui.theme.screens.item.ItemScreen
 import com.agro.kilimo.ui.theme.screens.login.LoginScreen
+import com.agro.kilimo.ui.theme.screens.productse.AddProductsScreen
+import com.agro.kilimo.ui.theme.screens.productse.UpdateProductsScreen
+import com.agro.kilimo.ui.theme.screens.productse.ViewProductsScreen
+import com.agro.kilimo.ui.theme.screens.productse.ViewUploadsScreen
 import com.agro.kilimo.ui.theme.screens.register.RegisterScreen
 
 
@@ -49,8 +53,21 @@ fun AppNavHost(
         }
 
         composable(ROUT_INTENT) {
-                Intent_Screen(navController)
-            }
+            Intent_Screen(navController)
+        }
+        composable(ROUT_ADDPRODUCTSCREEN) {
+            AddProductsScreen(navController)
+        }
+        composable(ROUT_UPDATEPRODUCTSCREEN) {
+            UpdateProductsScreen(navController)
+        }
+        composable(ROUT_VIEWUPLOADSCREEN) {
+            ViewUploadsScreen(navController)
+        }
+        composable(ROUT_VIEWPRODUCTSCREEN) {
+            ViewProductsScreen(navController)
+        }
+
         composable(ROUT_CONTACT) {
             ContactScreen(navController)
         }
