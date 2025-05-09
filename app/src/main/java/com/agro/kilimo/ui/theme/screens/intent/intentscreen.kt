@@ -47,35 +47,35 @@ fun Intent_Screen(navController:NavHostController) {
 
         Image(painterResource(id = R.drawable.apple),
             contentDescription = "intent")
-
-        Button(onClick = {
-            val intent = Intent(Intent.ACTION_CALL, ("tel:" + "+254717680972").toUri())
-
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    context as Activity,
-                    arrayOf(android.Manifest.permission.CALL_PHONE),
-                    1
-                )
-            } else {
-                context.startActivity(intent)
-            }
-
-
-        },
-            colors = ButtonDefaults.buttonColors(Color.Yellow),
-            modifier = Modifier.width(300.dp)) {
-            Text("CALL",
-                fontSize = 30.sp,
-                fontFamily = FontFamily.Cursive,
-                color = Color.Black
-            )
-
-        }
+//
+//        Button(onClick = {
+//            val intent = Intent(Intent.ACTION_CALL, ("tel:" + "+254717680972").toUri())
+//
+//            if (ContextCompat.checkSelfPermission(
+//                    context,
+//                    android.Manifest.permission.CALL_PHONE
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                ActivityCompat.requestPermissions(
+//                    context as Activity,
+//                    arrayOf(android.Manifest.permission.CALL_PHONE),
+//                    1
+//                )
+//            } else {
+//                context.startActivity(intent)
+//            }
+//
+//
+//        },
+//            colors = ButtonDefaults.buttonColors(Color.Yellow),
+//            modifier = Modifier.width(300.dp)) {
+//            Text("CALL",
+//                fontSize = 30.sp,
+//                fontFamily = FontFamily.Cursive,
+//                color = Color.Black
+//            )
+//
+//        }
         Button(onClick = {
 
             val uri = "smsto:0717680972".toUri()
@@ -106,7 +106,7 @@ fun Intent_Screen(navController:NavHostController) {
         },
             colors = ButtonDefaults.buttonColors(Color.Yellow),
             modifier = Modifier.width(300.dp)) {
-            Text("DIAL",
+            Text("CALL",
                 fontSize = 30.sp,
                 fontFamily = FontFamily.Cursive,
                 color = Color.Black

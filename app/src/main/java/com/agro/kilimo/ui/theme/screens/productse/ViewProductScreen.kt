@@ -3,8 +3,8 @@ package com.agro.kilimo.ui.theme.screens.productse
 
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+//import androidx.compose.foundation.lazy.LazyColumn
+//import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,22 +53,22 @@ fun ViewProductsScreen(navController:NavHostController) {
             Spacer(modifier = Modifier.height(20.dp))
 
 
-
-LazyColumn(modifier = Modifier
-    .fillMaxWidth()
-    .weight(1f) ){
-    items(uploads){
-        UploadItem(
-            name = it.name,
-            quantity = it.quantity,
-            price = it.price,
-            imageUrl = it.imageUrl,
-            id = it.id,
-            navController = navController,
-            productRepository = productRepository
-                    )
-                }
-            }
+//
+//LazyColumn(modifier = Modifier
+//    .fillMaxWidth()
+//    .weight(1f) ){
+//    items(uploads){
+//        UploadItem(
+//            name = it.name,
+//            quantity = it.quantity,
+//            price = it.price,
+//            imageUrl = it.imageUrl,
+//            id = it.id,
+//            navController = navController,
+//            productRepository = productRepository
+//                    )
+//                }
+//            }
         }
     }
 }
@@ -98,7 +98,7 @@ fun ProductItem(name:String, quantity:String, price:String, id:String,
 
 @Preview
 @Composable
-fun view() {
+fun View() {
     ViewProductsScreen(rememberNavController())
 
 }

@@ -26,7 +26,7 @@ import com.agro.kilimo.ui.theme.screens.register.RegisterScreen
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_DASHBOARD
+    startDestination: String = ROUT_LOGIN
 ) {
 
     NavHost(

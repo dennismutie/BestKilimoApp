@@ -47,6 +47,7 @@ import com.agro.kilimo.navigation.ROUT_HOME
 import com.agro.kilimo.navigation.ROUT_ITEM
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(navController: NavController){
@@ -78,6 +79,7 @@ fun DashboardScreen(navController: NavController){
 
                 Text(
                     text = "Kilimo App helps farmers improve their farming by offering crop advice, market prices, and useful farming tips in one easy-to-use platform."
+                             ,
 //                    fontWeight = FontWeight.Bold,
                 )
 

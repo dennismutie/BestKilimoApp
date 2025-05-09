@@ -86,11 +86,11 @@ fun UploadItem(name:String, quantity:String, price:String, imageUrl:String, id:S
         Text(text = name)
         Text(text = quantity)
         Text(text = price)
-        Image(
-            painter = rememberAsyncImagePainter(imageUrl),
-            contentDescription = null,
-            modifier = Modifier.size(128.dp)
-        )
+//        Image(
+////            painter = rememberAsyncImagePainter(imageUrl),
+//            contentDescription = null,
+//            modifier = Modifier.size(128.dp)
+//        )
         Button(onClick = {
             productRepository.deleteProduct(id)
         }) {
