@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.navigation.ROUT_ABOUT
 import com.agro.kilimo.navigation.ROUT_ADDPRODUCTSCREEN
 import com.agro.kilimo.navigation.ROUT_CONTACT
+import com.agro.kilimo.navigation.ROUT_DASHBOARD
 import com.agro.kilimo.navigation.ROUT_ITEM
 import com.agro.kilimo.navigation.ROUT_UPDATEPRODUCTSCREEN
 import com.agro.kilimo.navigation.ROUT_VIEWPRODUCTSCREEN
@@ -65,28 +66,46 @@ fun HomeScreen(navController: NavHostController) {
 
             // Add Product Button
             ActionCard(
-                title = "View Available Items",
-                description = "View items to your inventory.",
-                backgroundColor = Color.Red,
-                onClick = { navController.navigate(ROUT_ITEM) }
+                title = "KILIMO DASHBOARD",
+                description = "Navigate to Killimo Dashboard",
+                backgroundColor = Color.Blue,
+                onClick = { navController.navigate(ROUT_DASHBOARD) }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+
+            // View Product Button
+            ActionCard(
+                title = "Items on demand",
+                description = "View items to your inventory..",
+                backgroundColor = Color.Red,
+                onClick = { navController.navigate(ROUT_ITEM) }
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Upload Products Button
+            ActionCard(
+                title = "Contact",
+                description = "In case of any query or question, contact us.",
+                backgroundColor = Color.Black,
+                onClick = { navController.navigate(ROUT_CONTACT) }
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
 
             // View Product Button
             ActionCard(
                 title = "Add Your Products",
                 description = "Add your products of choice here.",
-                backgroundColor = Color.Blue,
+                backgroundColor = Color.DarkGray,
                 onClick = { navController.navigate(ROUT_ADDPRODUCTSCREEN) }
             )
-
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // View Product Button
             ActionCard(
-                title = "View Products",
+                title = "View Products.....",
                 description = "Check out products.",
                 backgroundColor = Color.DarkGray,
                 onClick = { navController.navigate(ROUT_VIEWPRODUCTSCREEN) }
@@ -96,7 +115,7 @@ fun HomeScreen(navController: NavHostController) {
 
             // View Product Button
             ActionCard(
-                title = "Update product screen",
+                title = "Update productS.......",
                 description = "Update your Products.",
                 backgroundColor = Color.Green,
                 onClick = { navController.navigate(ROUT_UPDATEPRODUCTSCREEN) }

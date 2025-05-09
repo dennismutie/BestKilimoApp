@@ -36,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.navigation.ROUT_ABOUT
 import com.agro.kilimo.navigation.ROUT_DASHBOARD
 import com.agro.kilimo.navigation.ROUT_HOME
+import com.agro.kilimo.navigation.ROUT_INTENT
 import com.agro.kilimo.navigation.ROUT_ITEM
 
 
@@ -101,7 +102,7 @@ fun ContactScreen(navController: NavController){
         //FloatingActionButton
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate(ROUT_HOME) },
+                onClick = { navController.navigate(ROUT_INTENT) },
                 containerColor = Color.Red,
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
