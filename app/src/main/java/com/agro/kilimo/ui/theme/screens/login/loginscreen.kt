@@ -91,7 +91,7 @@ fun LoginScreen(navController: NavHostController) {
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
-                    focusedTextColor = Color.White,
+                    focusedTextColor = Color.Black,
                     unfocusedTextColor = Color.White.copy(alpha = 0.8f)
                 )
             )
@@ -109,7 +109,7 @@ fun LoginScreen(navController: NavHostController) {
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
-                    focusedTextColor = Color.White,
+                    focusedTextColor = Color.Black,
                     unfocusedTextColor = Color.White.copy(alpha = 0.8f)
                 )
             )

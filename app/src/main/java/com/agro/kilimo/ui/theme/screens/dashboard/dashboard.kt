@@ -63,7 +63,7 @@ fun DashboardScreen(navController: NavController){
             Card (
                 modifier = Modifier.fillMaxWidth().height(300.dp),
                 shape = RoundedCornerShape(bottomStart = 60.dp, bottomEnd = 60.dp),
-                colors = CardDefaults.cardColors(Color.Yellow)
+                colors = CardDefaults.cardColors(Color.Magenta)
             ){
                 TopAppBar(
                     title = { Text(text = "Dashboard Section") },

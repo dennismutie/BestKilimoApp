@@ -93,9 +93,9 @@ fun RegisterScreen(navController: NavHostController) {
                     unfocusedContainerColor = Color.Transparent,
                     focusedIndicatorColor =  Color.Blue,
                     unfocusedIndicatorColor = Color.LightGray,
-                    focusedTextColor = Color.White,
+                    focusedTextColor = Color.Black,
                     unfocusedTextColor = Color.White,
-                    cursorColor = Color.White
+                    cursorColor = Color.Black
                 )
             )
 
@@ -111,11 +111,11 @@ fun RegisterScreen(navController: NavHostController) {
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Gray,
+                    focusedIndicatorColor = Color.Black,
                     unfocusedIndicatorColor = Color.LightGray,
-                    focusedTextColor = Color.White,
+                    focusedTextColor = Color.Black,
                     unfocusedTextColor = Color.White,
-                    cursorColor = Color.White
+                    cursorColor = Color.Black
                 )
             )
 
@@ -131,11 +131,11 @@ fun RegisterScreen(navController: NavHostController) {
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Cyan,
+                    focusedIndicatorColor = Color.Black,
                     unfocusedIndicatorColor = Color.LightGray,
-                    focusedTextColor = Color.White,
+                    focusedTextColor = Color.Blue,
                     unfocusedTextColor = Color.White,
-                    cursorColor = Color.White
+                    cursorColor = Color.Blue
                 )
             )
 

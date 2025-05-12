@@ -97,7 +97,7 @@ fun HomeScreen(navController: NavHostController) {
             ActionCard(
                 title = "Add Your Products",
                 description = "Add your products of choice here.",
-                backgroundColor = Color.DarkGray,
+                backgroundColor = Color.Magenta,
                 onClick = { navController.navigate(ROUT_ADDPRODUCTSCREEN) }
             )
 
@@ -124,12 +124,12 @@ fun HomeScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Upload Products Button
-            ActionCard(
-                title = "Contact",
-                description = "Upload product details to the cloud.",
-                backgroundColor = Color.Gray,
-                onClick = { navController.navigate(ROUT_CONTACT) }
-            )
+//            ActionCard(
+//                title = "Contact",
+//                description = "Upload product details to the cloud.",
+//                backgroundColor = Color.Gray,
+//                onClick = { navController.navigate(ROUT_CONTACT) }
+//            )
         }
     }
 }

@@ -48,6 +48,8 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.agro.kilimo.R
+import com.agro.kilimo.navigation.ROUT_DASHBOARD
+import com.agro.kilimo.navigation.ROUT_HOME
 import com.agro.kilimo.navigation.ROUT_INTENT
 
 
@@ -62,20 +64,20 @@ fun ItemScreen(navController: NavController){
         TopAppBar(
             title = { Text(text = "Products") },
             colors = TopAppBarDefaults.topAppBarColors(
-                navigationIconContentColor = Color.White,
+                navigationIconContentColor = Color.Magenta,
                 containerColor = Color.Yellow,
-                titleContentColor = Color.White,
-                actionIconContentColor =Color.White
+                titleContentColor = Color.Magenta,
+                actionIconContentColor =Color.Magenta
 
             ),
             navigationIcon = {
-                IconButton(onClick = {}) {
+                        IconButton(onClick = {navController.navigate(ROUT_DASHBOARD)}) {
                     Icon(imageVector = Icons.Default.Menu, contentDescription = "menu")
                 }
 
             },
             actions = {
-                IconButton(onClick = {}) {
+                IconButton(onClick = {navController.navigate(ROUT_HOME)}) {
                     Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "shoppingCart")
                 }
                 IconButton(onClick = {
@@ -91,7 +93,7 @@ fun ItemScreen(navController: NavController){
         //End
 
         Image(
-            painter = painterResource(R.drawable.item),
+            painter = painterResource(R.drawable.tomato),
             contentDescription = "home",
             modifier = Modifier.fillMaxWidth().height(150.dp),
             contentScale = ContentScale.FillWidth
@@ -199,7 +201,86 @@ fun ItemScreen(navController: NavController){
 
             }
             //End of Row
+            Row (modifier = Modifier.padding(start = 20.dp)){
+                Image(
+                    painter = painterResource(R.drawable.jembe),
+                    contentDescription = "home",
+                    modifier = Modifier.width(200.dp).height(150.dp),
+                    contentScale = ContentScale.FillWidth
+                )
 
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Column (){
+                    Text(
+                        text = "Jembe",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.ExtraBold
+
+                    )
+
+                    Text(
+                        text = " Farming Jembe",
+                        fontSize = 15.sp
+                    )
+                    Text(
+                        text = "ksh.1850",
+                        fontSize = 20.sp,
+                        textDecoration = TextDecoration.LineThrough
+                    )
+                    Text(
+                        text = "ksh.1050",
+                        fontSize = 20.sp,
+
+                        )
+
+                    Row () {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint =Color.Yellow
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Button(onClick = {
+                        val callIntent=Intent(Intent.ACTION_DIAL)
+                        callIntent.data="tel:0717680972".toUri()
+                        mContext.startActivity(callIntent)
+                    },
+                        colors = ButtonDefaults.buttonColors(Color.Yellow),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+
+
+                    ) {
+                        Text(text = "Contact Us")
+                    }
+                }
+
+
+
+            }
 
             //Row
             Row (modifier = Modifier.padding(start = 20.dp)){
