@@ -1,163 +1,138 @@
 package com.agro.kilimo.data
 
-//
-//import com.agro.kilimo.firebase.model.Product
-//import com.agro.kilimo.firebase.model.Upload
-
-
-
-import android.app.ProgressDialog
 import android.content.Context
-import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.NavHostController
 import com.agro.kilimo.models.Product
-import com.agro.kilimo.models.Upload
 import com.agro.kilimo.navigation.ROUT_LOGIN
-
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import kotlin.jvm.java
-
 
 class productviewmodel(var navController: NavHostController, var context: Context) {
-    var authRepository: AuthViewModel
-    var progress: ProgressDialog
+    private var authRepository: AuthViewModel = AuthViewModel(navController, context)
+    var loading = mutableStateOf(false)
 
     init {
-        authRepository = AuthViewModel(navController, context)
         if (!authRepository.isloggedin()) {
             navController.navigate(ROUT_LOGIN)
         }
-        progress = ProgressDialog(context)
-        progress.setTitle("Loading")
-        progress.setMessage("Please wait...")
     }
 
-
     fun saveProduct(productName: String, productQuantity: String, productPrice: String) {
-        var id = System.currentTimeMillis().toString()
-        var productData = Product(productName, productQuantity, productPrice, id)
-        var productRef = FirebaseDatabase.getInstance().getReference()
-            .child("Products/$id")
-        progress.show()
+        if (productName.isBlank() || productQuantity.isBlank() || productPrice.isBlank()) {
+            Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (productQuantity.toIntOrNull() == null || productPrice.toDoubleOrNull() == null) {
+            Toast.makeText(context, "Invalid quantity or price", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val id = System.currentTimeMillis().toString()
+        val productData = Product(productName, productQuantity, productPrice, id)
+        val productRef = FirebaseDatabase.getInstance().getReference().child("Products/$id")
+
+        loading.value = true
         productRef.setValue(productData).addOnCompleteListener {
-            progress.dismiss()
+            loading.value = false
             if (it.isSuccessful) {
-                Toast.makeText(context, "Saving successful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Product saved successfully", Toast.LENGTH_SHORT).show()
+                Log.d("ProductViewModel", "Saved product: $productData")
             } else {
-                Toast.makeText(context, "ERROR: ${it.exception!!.message}", Toast.LENGTH_SHORT)
-                    .show()
+                Log.e("ProductViewModel", "Save error: ${it.exception?.message}")
+                Toast.makeText(context, "Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     fun viewProducts(
         product: MutableState<Product>,
-        products: SnapshotStateList<Product>
-    ): SnapshotStateList<Product> {
-        var ref = FirebaseDatabase.getInstance().getReference().child("Products")
-
-        progress.show()
+        products: MutableList<Product> // Changed to standard MutableList
+    ): MutableList<Product> {
+        val ref = FirebaseDatabase.getInstance().getReference().child("Products")
+        loading.value = true
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                progress.dismiss()
+                loading.value = false
                 products.clear()
+                if (!snapshot.exists()) {
+                    Log.d("ProductViewModel", "No products found in Firebase")
+                    Toast.makeText(context, "No products available", Toast.LENGTH_SHORT).show()
+                    return
+                }
                 for (snap in snapshot.children) {
                     val value = snap.getValue(Product::class.java)
-                    product.value = value!!
-                    products.add(value)
+                    if (value != null) {
+                        Log.d("ProductViewModel", "Fetched product: $value")
+                        product.value = value
+                        products.add(value)
+                    } else {
+                        Log.w("ProductViewModel", "Failed to parse product: ${snap.key}")
+                    }
                 }
+                Log.d("ProductViewModel", "Total products fetched: ${products.size}")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+                loading.value = false
+                Toast.makeText(context, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                Log.e("ProductViewModel", "Fetch error: ${error.message}")
             }
         })
         return products
     }
 
     fun deleteProduct(id: String) {
-        var delRef = FirebaseDatabase.getInstance().getReference()
-            .child("Products/$id")
-        progress.show()
+        val delRef = FirebaseDatabase.getInstance().getReference().child("Products/$id")
+        loading.value = true
         delRef.removeValue().addOnCompleteListener {
-            progress.dismiss()
+            loading.value = false
             if (it.isSuccessful) {
-                Toast.makeText(context, "Product deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Product deleted successfully", Toast.LENGTH_SHORT).show()
+                Log.d("ProductViewModel", "Deleted product with id: $id")
             } else {
-                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+                Log.e("ProductViewModel", "Delete error: ${it.exception?.message}")
+                Toast.makeText(context, "Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    fun updateProduct(name: String, quantity: String, price: String, id: String) {
-        var updateRef = FirebaseDatabase.getInstance().getReference()
-            .child("Products/$id")
-        progress.show()
-        var updateData = Product(name, quantity, price, id)
+    fun updateProduct(
+        name: String,
+        quantity: String,
+        price: String,
+        id: String,
+        onComplete: (success: Boolean, errorMessage: String?) -> Unit
+    ) {
+        if (name.isBlank() || quantity.isBlank() || price.isBlank() || id.isBlank()) {
+            Log.e("ProductViewModel", "Invalid input: name=$name, quantity=$quantity, price=$price, id=$id")
+            onComplete(false, "All fields are required")
+            return
+        }
+        if (quantity.toIntOrNull() == null || price.toDoubleOrNull() == null) {
+            Log.e("ProductViewModel", "Invalid quantity or price: quantity=$quantity, price=$price")
+            onComplete(false, "Invalid quantity or price")
+            return
+        }
+
+        val updateRef = FirebaseDatabase.getInstance().getReference().child("Products/$id")
+        val updateData = Product(name, quantity, price, id)
+
+        loading.value = true
         updateRef.setValue(updateData).addOnCompleteListener {
-            progress.dismiss()
+            loading.value = false
             if (it.isSuccessful) {
-                Toast.makeText(context, "Update successful", Toast.LENGTH_SHORT).show()
+                Log.d("ProductViewModel", "Updated product: $updateData")
+                onComplete(true, null)
             } else {
-                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+                Log.e("ProductViewModel", "Update error: ${it.exception?.message}")
+                onComplete(false, it.exception?.message)
             }
         }
     }
-
-    fun saveProductWithImage(productName:String, productQuantity:String, productPrice:String, filePath: Uri){
-        var id = System.currentTimeMillis().toString()
-        var storageReference = FirebaseStorage.getInstance().getReference().child("Uploads/$id")
-        progress.show()
-
-        storageReference.putFile(filePath).addOnCompleteListener{
-            progress.dismiss()
-            if (it.isSuccessful){
-                // Proceed to store other data into the db
-                storageReference.downloadUrl.addOnSuccessListener {
-                    var imageUrl = it.toString()
-                    var houseData = Upload(productName,productQuantity,
-                        productPrice,imageUrl,id)
-                    var dbRef = FirebaseDatabase.getInstance()
-                        .getReference().child("Uploads/$id")
-                    dbRef.setValue(houseData)
-                    Toast.makeText(context, "Upload successful", Toast.LENGTH_SHORT).show()
-                }
-            }else{
-                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-
-    fun viewUploads(upload:MutableState<Upload>, uploads:SnapshotStateList<Upload>): SnapshotStateList<Upload> {
-        var ref = FirebaseDatabase.getInstance().getReference().child("Uploads")
-
-        progress.show()
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                progress.dismiss()
-                uploads.clear()
-                for (snap in snapshot.children){
-                    val value = snap.getValue(Upload::class.java)
-                    upload.value = value!!
-                    uploads.add(value)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
-            }
-        })
-        return uploads
-    }
-
-
 }
-
