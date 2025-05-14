@@ -118,7 +118,7 @@ fun HomeScreen(navController: NavHostController) {
                 title = "Update productS.......",
                 description = "Update your Products.",
                 backgroundColor = Color.Green,
-                onClick = { navController.navigate(ROUT_UPDATEPRODUCTSCREEN) }
+                onClick = { navController.navigate(ROUT_VIEWPRODUCTSCREEN) }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
